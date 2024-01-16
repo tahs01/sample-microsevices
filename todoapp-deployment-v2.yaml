@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: htmlapp-deployment
+  labels:
+    app: htmlapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: htmlapp
+  template:
+    metadata:
+      labels:
+        app: htmlapp
+    spec:
+      serviceAccountName: todoapp-sa
+      containers:
+      - name: htmlserver
+        image: tahs01/todoapp-html:latest
+        ports:
+        - containerPort: 80
+
